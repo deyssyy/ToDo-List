@@ -2,6 +2,7 @@ import UIKit
 
 class NoteViewController: UIViewController{
     
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var noteText: UITextView!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var saveButton: UIButton!
@@ -21,6 +22,10 @@ class NoteViewController: UIViewController{
         }else{
             delegate?.addNote(noteName: noteName, note: noteText)
         }
+        self.dismiss(animated: true)
+    }
+    
+    @IBAction func backButtonPush(_ sender: Any) {
         self.dismiss(animated: true)
     }
     

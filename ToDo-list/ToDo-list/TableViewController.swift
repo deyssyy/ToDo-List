@@ -9,6 +9,7 @@ import UIKit
 
 protocol AddNoteDelegate: AnyObject {
     func addNote(noteName: String, note: String)
+    func editNote(noteName: String, noteText: String, index: Int)
 }
 
 struct Note: Codable{
@@ -31,24 +32,26 @@ class TableViewController: UIViewController{
        // UserDefaults.standard.removeObject(forKey: "Note")
     }
     
+    
+    //Переопределение segue для перехода на нужный ViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newNote", let destination = segue.destination as? NoteViewController {
             destination.delegate = self
         }
         if segue.identifier == "EditNote", let destination = segue.destination as? EditNoteViewController, let selectedIndex = sender as? IndexPath{
-            //destination.delegate = self
+            destination.delegate = self
             destination.index = selectedIndex.row
             let destinationNote = notes[selectedIndex.row]
             destination.name = destinationNote.name
             destination.note = destinationNote.text
-            print(destination.name)
-            print(destination.note)
         }
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
         
     }
+    
+    //Кодирование массива структур в JSON и сохранение в UserDefaults
     func encode(notes: [Note]){
         arr = []
         let encoder = JSONEncoder()
@@ -63,6 +66,7 @@ class TableViewController: UIViewController{
         }
     }
     
+    //Чтение и декодирование JSON из UserDefaults
     func decode(){
         let decoder = JSONDecoder()
         for elem in arr{

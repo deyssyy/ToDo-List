@@ -52,7 +52,12 @@ extension TableViewController: AddNoteDelegate{
         UserDefaults.standard.set(arr, forKey: "Note")
         tableView.insertRows(at: [IndexPath(row: notes.count - 1, section: 0)], with: .automatic)
     }
-    func editNote(){
-        
+    func editNote(noteName: String, noteText: String, index: Int) {
+        let editedNote = Note(name: noteName, text: noteText)
+        print(notes[index])
+        notes[index] = editedNote
+        print(notes[index])
+        encode(notes: notes)
+        UserDefaults.standard.set(arr, forKey: "Note")
     }
 }

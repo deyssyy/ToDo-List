@@ -29,7 +29,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ULA-8W-nC1" kind="show" identifier="EditNote" id="mk4-uJ-awL"/>
+                                            <segue destination="ULA-8W-nC1" kind="presentation" identifier="EditNote" modalPresentationStyle="fullScreen" id="mk4-uJ-awL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -42,7 +42,7 @@
                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
                                 <connections>
                                     <action selector="addButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mxh-q9-Pps"/>
-                                    <segue destination="IVh-q5-jAf" kind="show" identifier="newNote" animates="NO" id="awx-Az-p5a"/>
+                                    <segue destination="IVh-q5-jAf" kind="presentation" identifier="newNote" animates="NO" modalPresentationStyle="fullScreen" id="awx-Az-p5a"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -64,7 +64,7 @@
             <objects>
                 <viewController id="IVh-q5-jAf" customClass="NoteViewController" customModule="ToDo_list" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nVu-EU-qen">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Lp-FB-F18">
@@ -77,7 +77,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4rH-gB-LLM">
-                                <rect key="frame" x="16" y="106" width="361" height="736"/>
+                                <rect key="frame" x="16" y="146" width="361" height="696"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -85,19 +85,29 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Новая заметка" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="83f-QH-YQM">
-                                <rect key="frame" x="14" y="51" width="268" height="47"/>
+                                <rect key="frame" x="16" y="91" width="268" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6iQ-oS-bHv">
+                                <rect key="frame" x="10" y="48" width="88" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.backward.fill" catalog="system" title="back"/>
+                                <connections>
+                                    <action selector="backButtonPush:" destination="IVh-q5-jAf" eventType="touchUpInside" id="6Dj-wz-3XG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7E3-D5-8Tl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="d15-eE-nnQ"/>
                     <connections>
+                        <outlet property="backButton" destination="6iQ-oS-bHv" id="xuk-GU-aTC"/>
                         <outlet property="noteText" destination="4rH-gB-LLM" id="rdV-hw-lr0"/>
                         <outlet property="noteTextView" destination="83f-QH-YQM" id="dEE-Rr-dbW"/>
                         <outlet property="saveButton" destination="9Lp-FB-F18" id="ia5-i5-37y"/>
@@ -112,11 +122,11 @@
             <objects>
                 <viewController id="ULA-8W-nC1" customClass="EditNoteViewController" customModule="ToDo_list" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xcq-2P-x1F">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="I7W-8y-8Zh">
-                                <rect key="frame" x="0.0" y="102" width="393" height="740"/>
+                                <rect key="frame" x="0.0" y="144" width="393" height="698"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -124,25 +134,38 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngq-Zj-CRU">
-                                <rect key="frame" x="315" y="59" width="61" height="35"/>
+                                <rect key="frame" x="302" y="59" width="87" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.down.circle.fill" catalog="system" title="Save"/>
+                                <connections>
+                                    <action selector="saveChangesButtonPressed:" destination="ULA-8W-nC1" eventType="touchUpInside" id="0MM-Kx-Q5g"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="geQ-7i-CRS">
-                                <rect key="frame" x="15" y="48" width="292" height="46"/>
+                                <rect key="frame" x="16" y="90" width="361" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1at-1j-BT9">
+                                <rect key="frame" x="10" y="59" width="89" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.backward.fill" catalog="system" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="ULA-8W-nC1" eventType="touchUpInside" id="6KD-Y9-qpc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3W1-g8-Qb9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="mHj-OU-Go9"/>
                     <connections>
+                        <outlet property="backButton" destination="1at-1j-BT9" id="rLm-Ic-HhZ"/>
                         <outlet property="editNoteTextView" destination="I7W-8y-8Zh" id="mv8-ih-cev"/>
                         <outlet property="nameTextView" destination="geQ-7i-CRS" id="Cop-T2-V5X"/>
                     </connections>
@@ -153,7 +176,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.down.circle.fill" catalog="system" width="128" height="123"/>
         <image name="arrowshape.down.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="104"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
