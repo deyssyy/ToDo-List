@@ -15,11 +15,13 @@ protocol AddNoteDelegate: AnyObject {
 struct Note: Codable{
     var name: String
     var text: String
+    var status = false
 }
 
 class TableViewController: UIViewController{
     var arr: [Data] = []
     var notes: [Note] = []
+    var completedNotes: [Note] = []
     @IBOutlet weak var addNoteButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -29,7 +31,7 @@ class TableViewController: UIViewController{
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         arr = UserDefaults.standard.value(forKey: "Note") as? [Data] ?? []
         decode()
-       // UserDefaults.standard.removeObject(forKey: "Note")
+        //UserDefaults.standard.removeObject(forKey: "Note")
     }
     
     
@@ -41,9 +43,16 @@ class TableViewController: UIViewController{
         if segue.identifier == "EditNote", let destination = segue.destination as? EditNoteViewController, let selectedIndex = sender as? IndexPath{
             destination.delegate = self
             destination.index = selectedIndex.row
-            let destinationNote = notes[selectedIndex.row]
-            destination.name = destinationNote.name
+            if selectedIndex.section == 0{
+                let destinationNote = notes[selectedIndex.row]
+                destination.name = destinationNote.name
             destination.note = destinationNote.text
+            }else{
+                let destinationNote = completedNotes[selectedIndex.row]
+                
+                destination.name = destinationNote.name
+                destination.note = destinationNote.text
+            }
         }
     }
     
@@ -72,7 +81,11 @@ class TableViewController: UIViewController{
         for elem in arr{
             do{
                 let note = try decoder.decode(Note.self, from: elem)
-                self.notes.append(note)
+                if !note.status{
+                    self.notes.append(note)
+                }else{
+                    self.completedNotes.append(note)
+                }
             }
             catch{
                 print("error decoding")
